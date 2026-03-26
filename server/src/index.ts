@@ -7,15 +7,12 @@ import webhookRoutes from './routes/webhook.js';
 import leadRoutes from './routes/leads.js';
 import whatsappRoutes from './routes/whatsapp.js';
 
-dotenv.config({ override: true });
-console.log('[DEBUG] DATABASE_URL loaded:', process.env.DATABASE_URL);
+dotenv.config();
+process.stdout.write('[STARTUP] Iniciando servidor...\n');
+process.stdout.write('[DEBUG] DATABASE_URL: ' + (process.env.DATABASE_URL ? 'OK (definido)' : 'AUSENTE!') + '\n');
 
 const fastify = Fastify({
-  logger: {
-    transport: {
-      target: 'pino-pretty',
-    },
-  },
+  logger: true,
 });
 
 fastify.register(cors, { 
