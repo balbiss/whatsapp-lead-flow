@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      args:
+        # Quando rodar no docker-compose, a URL base do frontend para acessar o backend será /api (o próprio Nginx fará o proxy)
+        - VITE_API_URL=/api
+    container_name: crm-frontend
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./server
+    container_name: crm-backend
+    ports:
+      - "3006:3006"
+    env_file:
+      - ./server/.env
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
