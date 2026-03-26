@@ -52,7 +52,7 @@ export default function WhatsApp() {
           </div>
         </CardHeader>
         <CardContent className="space-y-6">
-          <div className="flex flex-col items-center py-8">
+          <div className="flex flex-col items-center py-4">
             {showQr ? (
               <div className="relative">
                 <div className="w-48 h-48 bg-secondary rounded-xl border-2 border-dashed border-border flex items-center justify-center">
