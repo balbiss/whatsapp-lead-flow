@@ -34,7 +34,7 @@ export default function Roulette() {
     : null;
 
   return (
-    <div className="p-6 space-y-6 max-w-2xl">
+    <div className="p-6 space-y-6 max-w-4xl">
       <div>
         <h1 className="text-2xl font-bold text-foreground">Roleta de Atendentes</h1>
         <p className="text-sm text-muted-foreground">Rodízio Round Robin automático</p>

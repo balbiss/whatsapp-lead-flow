@@ -47,7 +47,7 @@ export default function Funnel() {
   };
 
   return (
-    <div className="p-6 space-y-4">
+    <div className="p-6 space-y-3">
       <div>
         <h1 className="text-2xl font-bold text-foreground">Funil de Vendas</h1>
         <p className="text-sm text-muted-foreground">Arraste os cards entre as colunas</p>
