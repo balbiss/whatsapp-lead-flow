@@ -2,8 +2,8 @@ version: '3.8'
 
 services:
   backend:
-    # Imagem buildada automaticamente pelo GitHub Actions
-    image: ghcr.io/balbiss/whatsapp-lead-flow-backend:latest
+    # Imagem buildada manualmente no servidor (docker build -t crm-backend:latest ./server)
+    image: crm-backend:latest
     networks:
       - inoovawebpro
     environment:
@@ -15,6 +15,9 @@ services:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
     deploy:
       replicas: 1
+      placement:
+        constraints:
+          - node.hostname == inoovaweb
       restart_policy:
         condition: on-failure
       labels:
@@ -26,12 +29,15 @@ services:
         - traefik.http.services.crm-backend.loadbalancer.server.port=3006
 
   frontend:
-    # Imagem buildada automaticamente pelo GitHub Actions
-    image: ghcr.io/balbiss/whatsapp-lead-flow-frontend:latest
+    # Imagem buildada manualmente no servidor (docker build -t crm-frontend:latest .)
+    image: crm-frontend:latest
     networks:
       - inoovawebpro
     deploy:
       replicas: 1
+      placement:
+        constraints:
+          - node.hostname == inoovaweb
       restart_policy:
         condition: on-failure
       labels:
