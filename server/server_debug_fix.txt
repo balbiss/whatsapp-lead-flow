@@ -1,0 +1,8 @@
+﻿[dotenv@17.3.1] injecting env (4) from .env -- tip: ÔÜÖ´©Å  enable debug logging with { debug: true }
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ÔÜÖ´©Å  write to custom object with { processEnv: myObject }
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ÔÜÖ´©Å  write to custom object with { processEnv: myObject }
+[DEBUG] DATABASE_URL loaded: postgresql://postgres.cfvymtfxazxzwmlvgkbu:280896Ab01733190252@db.cfvymtfxazxzwmlvgkbu.supabase.co:6543/postgres?pgbouncer_mode=transaction
+--- SERVIDOR REINICIADO COM SUCESSO ---
+Servidor Backend SaaS rodando na porta 3005
+[00:39:45.720] [32mINFO[39m (30868): [36mServer listening at http://127.0.0.1:3005[39m
+[00:39:45.721] [32mINFO[39m (30868): [36mServer listening at http://192.168.100.73:3005[39m

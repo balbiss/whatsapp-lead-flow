@@ -1,6 +1,8 @@
 import { FastifyInstance } from 'fastify';
 import bcrypt from 'bcrypt';
+import crypto from 'crypto';
 import prisma from '../lib/prisma.js';
+import { WuzapiService } from '../services/wuzapi.js';
 
 export default async function authRoutes(fastify: FastifyInstance) {
   fastify.post('/register', async (request, reply) => {
@@ -8,10 +10,13 @@ export default async function authRoutes(fastify: FastifyInstance) {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    const wuzapiToken = crypto.randomUUID();
+
     const tenant = await prisma.tenant.create({
       data: {
         name: companyName,
         segment,
+        wuzapiToken,
         users: {
           create: {
             name,
@@ -23,6 +28,12 @@ export default async function authRoutes(fastify: FastifyInstance) {
       },
       include: { users: true }
     });
+
+    try {
+      await WuzapiService.createUser(companyName, wuzapiToken);
+    } catch (e) {
+      console.error('Wuzapi silent error during registration:', e);
+    }
 
     const token = fastify.jwt.sign({ 
       id: tenant.users[0].id, 

@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  SELLER
+}
+
+enum LeadStatus {
+  NEW
+  AI_FOLLOW_UP
+  HUMAN_FOLLOW_UP
+  INTERESTED
+  CLOSED
+}
+
+model Tenant {
+  id                 String   @id @default(uuid())
+  name               String
+  segment            String?
+  wuzapiToken        String?  @unique
+  aiPrompt           String?  @db.Text
+  subscriptionStatus String   @default("active")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  users              User[]
+  leads              Lead[]
+  messages           Message[]
+}
+
+model User {
+  id               String   @id @default(uuid())
+  name             String
+  email            String   @unique
+  password         String
+  role             Role     @default(SELLER)
+  tenantId         String
+  tenant           Tenant   @relation(fields: [tenantId], references: [id])
+  lastAssignedAt   DateTime @default(now())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  leads            Lead[]
+}
+
+model Lead {
+  id        String     @id @default(uuid())
+  phone     String
+  name      String?
+  status    LeadStatus @default(NEW)
+  tenantId  String
+  tenant    Tenant     @relation(fields: [tenantId], references: [id])
+  sellerId  String?
+  seller    User?      @relation(fields: [sellerId], references: [id])
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  messages  Message[]
+  @@unique([phone, tenantId])
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  content   String   @db.Text
+  sender    String   
+  leadId    String
+  lead      Lead     @relation(fields: [leadId], references: [id])
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  createdAt DateTime @default(now())
+}

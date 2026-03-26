@@ -1,0 +1,44 @@
+﻿[dotenv@17.3.1] injecting env (4) from .env -- tip: ÔÜÖ´©Å  enable debug logging with { debug: true }
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ÔÜÖ´©Å  write to custom object with { processEnv: myObject }
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ÔÜÖ´©Å  write to custom object with { processEnv: myObject }
+[DEBUG] DATABASE_URL loaded: postgresql://postgres.cfvymtfxazxzwmlvgkbu:280896Ab01733190252@db.cfvymtfxazxzwmlvgkbu.supabase.co:6543/postgres?pgbouncer_mode=transaction
+--- SERVIDOR REINICIADO COM SUCESSO ---
+Servidor Backend SaaS rodando na porta 3005
+[00:39:45.720] [32mINFO[39m (30868): [36mServer listening at http://127.0.0.1:3005[39m
+[00:39:45.721] [32mINFO[39m (30868): [36mServer listening at http://192.168.100.73:3005[39m
+[00:40:47.142] [32mINFO[39m (30868): [36mincoming request[39m
+    [35mreqId[39m: "req-1"
+    [35mreq[39m: {
+      "method": "HEAD",
+      "url": "/whatsapp/status",
+      "host": "127.0.0.1:3005",
+      "remoteAddress": "127.0.0.1",
+      "remotePort": 56412
+    }
+[00:40:47.146] [31mERROR[39m (30868): [36mERR_JWT_VERIFY: Authentication failed for request[39m
+[00:40:47.147] [31mERROR[39m (30868): [36mNo Authorization was found in request.headers[39m
+    err: {
+      "type": "FastifyError",
+      "message": "No Authorization was found in request.headers",
+      "stack":
+          FastifyError: No Authorization was found in request.headers
+              at lookupToken (C:\Users\inoov\Desktop\CRM-SAAS\whatsapp-lead-flow\server\node_modules\@fastify\jwt\jwt.js:278:13)
+              at _Request.requestVerify [as jwtVerify] (C:\Users\inoov\Desktop\CRM-SAAS\whatsapp-lead-flow\server\node_modules\@fastify\jwt\jwt.js:487:15)
+              at useGlobalOptions (C:\Users\inoov\Desktop\CRM-SAAS\whatsapp-lead-flow\server\node_modules\@fastify\jwt\jwt.js:455:31)
+              at new Promise (<anonymous>)
+              at _Request.requestVerify [as jwtVerify] (C:\Users\inoov\Desktop\CRM-SAAS\whatsapp-lead-flow\server\node_modules\@fastify\jwt\jwt.js:454:14)
+              at Object.<anonymous> (C:\Users\inoov\Desktop\CRM-SAAS\whatsapp-lead-flow\server\src\routes\whatsapp.ts:9:21)
+              at hookIterator (C:\Users\inoov\Desktop\CRM-SAAS\whatsapp-lead-flow\server\node_modules\fastify\lib\hooks.js:408:10)
+              at next (C:\Users\inoov\Desktop\CRM-SAAS\whatsapp-lead-flow\server\node_modules\fastify\lib\hooks.js:242:18)
+              at hookRunner (C:\Users\inoov\Desktop\CRM-SAAS\whatsapp-lead-flow\server\node_modules\fastify\lib\hooks.js:264:5)
+              at validationCompleted (C:\Users\inoov\Desktop\CRM-SAAS\whatsapp-lead-flow\server\node_modules\fastify\lib\handle-request.js:117:5)
+      "code": "FST_JWT_NO_AUTHORIZATION_IN_HEADER",
+      "name": "FastifyError",
+      "statusCode": 401
+    }
+[00:40:47.157] [32mINFO[39m (30868): [36mrequest completed[39m
+    [35mreqId[39m: "req-1"
+    [35mres[39m: {
+      "statusCode": 500
+    }
+    [35mresponseTime[39m: 13.728800058364868
