@@ -1,7 +1,7 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
 
-dotenv.config({ override: true });
+// dotenv.config({ override: true });
 
 const BASE_URL = process.env.WUZAPI_BASE_URL || 'https://weeb.inoovaweb.com.br';
 const ADMIN_TOKEN = process.env.WUZAPI_ADMIN_TOKEN;
